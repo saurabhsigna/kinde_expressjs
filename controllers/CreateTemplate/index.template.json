@@ -1,0 +1,36 @@
+{
+  "importing_code": [
+    "const express = require('express');",
+    "const fs = require('fs-extra');",
+    {
+      "type": "cors",
+      "code": "const cors = require(`cors`)"
+    },
+    {
+      "type": "kinde",
+      "code": "const { setupKinde, protectRoute, getUser } = require(\"@kinde-oss/kinde-node-express\");"
+    }
+  ],
+  "execution_code": [
+    "const app = express();",
+    {
+      "type": "cors",
+      "code": "app.use(cors);"
+    },
+    "// rate-limiting code here",
+    "// other execution code here",
+    {
+      "type": "kinde",
+      "code": "const config = {\n  clientId: process.env.KINDE_ID,\n  issuerBaseUrl: process.env.ISSUER_URL,\n  siteUrl: process.env.SITE_URI,\n  secret: process.env.KINDE_SECRET,\n  redirectUrl: process.env.KINDE_REDIRECT_URI,\n};\nsetupKinde(config, app);"
+    }
+  ],
+  "routing_code": ["// router code here", "app.use(router);"],
+  "app_listen_code": [
+    "app.listen(port, () => {\n  console.log(`Server is running on port ${port}`);\n});"
+  ],
+  "flagBoolean": {
+    "cors": true,
+    "rate_limiting": true,
+    "kinde": true
+  }
+}
