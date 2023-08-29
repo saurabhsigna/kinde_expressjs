@@ -1,6 +1,9 @@
 const fs = require("fs-extra");
 
-async function updateConfigFile() {
+async function updateConfigFile(req,res) {
+
+  const {projectId} = req.body
+
   try {
     // Load your JSON configuration
     const config = require("./index.template.json");

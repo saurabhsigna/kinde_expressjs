@@ -18,11 +18,18 @@
   },
   "homepage": "https://github.com/codesandbox-app/static-template#readme",
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.4",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "@kinde-oss/kinde-node-express": "^1.0.12",
+    "@supabase/supabase-js": "^2.33.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "fs-extra": "^11.1.1"
+    "firebase-admin": "^11.10.1",
+    "fs-extra": "^11.1.1",
+    "zod": "^3.22.2"
   }
 }

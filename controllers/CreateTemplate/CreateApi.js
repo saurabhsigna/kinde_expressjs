@@ -1,7 +1,9 @@
 const fs = require("fs").promises;
 const path = require("path");
 const { GetContent } = require("../../contents/api/requests/GET");
-async function CreateApi() {
+async function CreateApi(req, res) {
+  const { apiRequests, apiName, apiConfig ,projectId} = req.body;
+
   try {
     // Create the main folder
     const mainFolder = path.join(__dirname, "../../outputs", "MyTemplate");
@@ -33,24 +35,30 @@ async function CreateApi() {
         } else {
           console.log("File written successfully.");
         }
-      }),  fs.writeFile(path.join(requestsFolder, "DELETE.js"), GetContent, (err) => {
-        if (err) {
-          console.error("Error writing file:", err);
-        } else {
-          console.log("File written successfully.");
-        }
       }),
+      fs.writeFile(
+        path.join(requestsFolder, "DELETE.js"),
+        GetContent,
+        (err) => {
+          if (err) {
+            console.error("Error writing file:", err);
+          } else {
+            console.log("File written successfully.");
+          }
+        }
+      ),
       fs.writeFile(path.join(requestsFolder, "PUT.js"), GetContent, (err) => {
         if (err) {
           console.error("Error writing file:", err);
         } else {
           console.log("File written successfully.");
         }
-      })
+      }),
     ]);
 
     // Create the route.js file
     await fs.writeFile(path.join(mainFolder, "route.js"), "");
+    await fs.writeFile(path.join(mainFolder, "route.template.json"), "");
     return "generated";
   } catch (error) {
     console.error(error);
