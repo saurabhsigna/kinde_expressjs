@@ -1,10 +1,9 @@
-const express = require("express");
-const {
-  setupKinde,
-  protectRoute,
-  getUser,
-} = require("@kinde-oss/kinde-node-express");
+import * as express from "express";
+// import { setupKinde,
+//   protectRoute,
+//   getUser} from "@kinde-oss/kinde-node-express"
 
+const { setupKinde } = require("@kinde-oss/kinde-node-express");
 const app = express();
 app.use(express.json());
 
@@ -15,7 +14,6 @@ const config = {
   secret: process.env.KINDE_SECRET,
   redirectUrl: process.env.KINDE_REDIRECT_URI,
 };
-
 
 setupKinde(config, app);
 
