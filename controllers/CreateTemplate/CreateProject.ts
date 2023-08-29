@@ -1,14 +1,21 @@
-const fs = require("fs");
-const path = require("path");
-const { createClient } = require("@supabase/supabase-js");
-const {z} = require("zod")
-const supabase = createClient(
-  process.env.DATABASE_URL,
-  process.env.DATABASE_KEY
-);
+const fs = require("fs-extra");
+import * as path from "path";
+import {Request,Response} from "express"
+import { createClient } from "@supabase/supabase-js";
+import { z } from "zod";
+// const supabase = createClient(
+//   process.env.DATABASE_URL,
+//   process.env.DATABASE_KEY
+// );
+
+interface ReqBody {
+  projectType:string,
+  apiName:string,
+  projectId:string
+}
 
 async function CreateProject(req: Request, res: Response) {
-  const { apiRequests, apiName, apiConfig, projectId } = req.body;
+  const { projectType, apiName, projectId }:ReqBody = req.body;
 
   try {
     // Create the main folder
