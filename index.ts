@@ -6,6 +6,7 @@ const {
 } = require("@kinde-oss/kinde-node-express");
 
 const app = express();
+app.use(express.json());
 
 const config = {
   clientId: process.env.KINDE_ID,
